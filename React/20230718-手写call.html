@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写call</title>
+</head>
+
+<body>
+    <script>
+        var geyao = {
+            name: "geyao",
+            show() {
+                console.log(this, "this")
+                console.log(` 我是${this.name}`)
+            }
+        }
+        var fangfang = {
+            name: "fangfang"
+        }
+        var test = {
+            name: "test"
+        }
+
+        Function.prototype.GeyaoCall = function (content, ...arguments) {
+            //解决没有参数 就是window的问题
+            content = content || window
+            //定义唯一值
+            let unique=Symbol()
+            content[unique]=this
+            //解决传递多个参数的问题
+            content[unique](...arguments)
+            //删除多余属性
+            delete content[unique]
+        }
+        geyao.show.GeyaoCall(test,fangfang)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react-CreateElment</title>
+</head>
+
+<body>
+    <!-- <div id="geyao">geyao</div> -->
+    <script>
+        const TEST = {
+            key: true,
+            ref: true,
+            __self: true,
+            __source: true,
+        };
+        function createElment(type, config, ...children) {
+            let propName;
+            const props = {};
+            let key = '' + config.key;
+            let ref = config.ref;
+            let self = config.__self;
+            let source = config.__source
+            console.log(config, "config is 1")
+            for (propName in config) {
+            if (config.hasOwnProperty(propName) && !TEST.hasOwnProperty(propName)) {
+                props[propName] = config[propName];
+            }
+            console.log(props, "config is 2")
+        }
+        }
+        createElment("div", { id: "geyao" },
+            "geyao"
+            // createElement("div", { id: "very" }, "very"),
+            // createElement("div", { id: "nice" }, "nice")
+        )
+    </script>
+</body>
+
+</html>
